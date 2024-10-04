@@ -172,7 +172,6 @@ public class TarjansAlgorithmArrayRecursive {
       @ requires (\forall int i; 0 <= i < dfsNumbers.length; lowlinkNumbers[i] != -1 <==> dfsNumbers[i] != -1);
       @ // for every vertex on stack there is a reachable vertex with low == dfs
       @ requires (\forall int i; 0 <= i < stackPointer; (\exists int j; 0 <= j < stackPointer ;reachable(stack[i], stack[j]) && lowlinkNumbers[stack[j]] == dfsNumbers[stack[j]]));
-      @ // lowVal is min of the surrounding ones. WRONG!
       @ // is a scc\
       @ requires (\forall int i; 0 <= i < components.length; (\forall int j; 0 <= j < components.length; components[j] == -1 || components[i] == -1 || (components[i] == components[j] ==> inSameSCC(i,j))));
       @ requires (\forall int i; 0 <= i < components.length; !(\exists int j; 0 <= j < components.length; components[i] != -1 && components[i] != components[j] && inSameSCC(i, j)));
@@ -295,8 +294,6 @@ public class TarjansAlgorithmArrayRecursive {
       @ requires (\forall int i; 0 <= i < stackPointer; reachable(stack[i], vertexLabel));
       @ // for every vertex on stack there is a reachable vertex with low == dfs
       @ requires (\forall int i; 0 <= i < stackPointer; (\exists int j; 0 <= j < stackPointer ;reachable(stack[i], stack[j]) && lowlinkNumbers[stack[j]] == dfsNumbers[stack[j]]));
-      @ // lowVal is min of the surrounding ones.
-      @ requires (\forall int i; 0 <= i < lowlinkNumbers.length; (\forall int j; 0 <= j < adjVertices[i].length; lowlinkNumbers[i] <= lowlinkNumbers[adjVertices[i][j]] ));
       @ // is a scc\
       @ requires (\forall int i; 0 <= i < components.length; (\forall int j; 0 <= j < components.length; components[j] == -1 || components[i] == -1 || (components[i] == components[j] ==> inSameSCC(i,j))));
       @ requires (\forall int i; 0 <= i < components.length; !(\exists int j; 0 <= j < components.length; components[i] != -1 && components[i] != components[j] && inSameSCC(i, j)));
